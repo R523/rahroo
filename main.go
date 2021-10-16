@@ -16,6 +16,10 @@ const (
 	// Command sends over spi interface
 	// nolint: gomnd
 	Command uint8 = (8 + Channel) << 4
+
+	Threshold = 20
+
+	LEDPin rpio.Pin = 22
 )
 
 func main() {
@@ -32,6 +36,8 @@ func main() {
 		return
 	}
 	defer rpio.Close()
+
+	rpio.PinMode(LEDPin, rpio.Output)
 
 	if err := rpio.SpiBegin(rpio.Spi0); err != nil {
 		pterm.Error.Printf("falied to open spi0 %s", err)
@@ -61,6 +67,12 @@ func main() {
 			value := uint16(data[1]&0x03)<<8 | uint16(data[2])
 
 			pterm.Info.Println(value)
+
+			if value < Threshold {
+				rpio.WritePin(LEDPin, rpio.High)
+			} else {
+				rpio.WritePin(LEDPin, rpio.Low)
+			}
 		}
 	}
 }
