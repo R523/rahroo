@@ -1,7 +1,8 @@
-# rahroo
+# Rahroo 🛣️
 
 ## Introduction
 
-This program uses light sensor to detect white and black colors.
-the light sensor is a resitor that changes the voltage so we need to detect it with an analog signal and we use ADC.
-our ADC (MPC3008) has SPI interface and we setup it with RPi hardware SPI.
+This program is designed to differentiate between white and black surfaces using a light sensor.
+The sensor operates as a variable resistor that alters voltage levels in response to light intensity, necessitating the use of an analog signal for accurate detection.
+To facilitate this, we’re employing an MPC3008 ADC, known for its SPI (Serial Peripheral Interface) compatibility.
+The ADC has been configured to integrate seamlessly with the Raspberry Pi’s hardware SPI capabilities, allowing for precise and real-time color sensing critical for the application’s requirements.
